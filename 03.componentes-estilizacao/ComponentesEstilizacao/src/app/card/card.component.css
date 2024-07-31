@@ -20,3 +20,25 @@
     font-weight: 600;
     font-size: 40px;
 }
+
+/* Style por componente */
+:host ::ng-deep .card_cancel_button {
+    background-color: purple !important;
+}
+
+/* Style por componente pai e seus filhos */
+::ng-deep .cancel_button .card_cancel_button {
+    background-color: green !important;
+}
+
+.global {
+    background-color: greenyellow;
+}
+
+.emulated {
+    background-color: red;
+}
+
+div[attr] {
+    background-color: cadetblue;
+}

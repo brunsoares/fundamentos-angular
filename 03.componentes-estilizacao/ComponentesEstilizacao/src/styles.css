@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --main-bg-color-cancel: red;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mdc-slider__track--active_fill {
+    border-color: purple !important;
+}
+
+/* Important para forçar a configuração sobre o mesmo atributo do emulated */
+.emulated {
+    background-color: peru !important;
+}
+
+/* Mesmo com important o componente card está com css isolado */
+.shadowdom {
+    background-color: aquamarine !important;
+}

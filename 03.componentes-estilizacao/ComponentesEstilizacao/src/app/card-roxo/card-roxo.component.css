@@ -20,3 +20,13 @@
     font-weight: 600;
     font-size: 40px;
 }
+
+/* Style por componente alterando componente pai e filhos com ID one */
+:host ::ng-deep #one .card_cancel_button {
+    background-color: magenta !important;
+}
+
+/* Style por componente alterando componente pai e filhos com ID two */
+:host ::ng-deep #two .card_cancel_button {
+    background-color: brown !important;
+}
