@@ -1,0 +1,52 @@
+<!--  atributo="" / [Propriedade]="" -->
+<input
+  id="inputOne"
+  [value]="inputValue"
+  [type]="inputType"
+  [disabled]="inputDisabled"
+  (keyup)="handleKeyUp($event)"
+/>
+
+<br />
+
+<button (click)="changeInputValue()">Mudar valor default</button>
+
+<br />
+
+<button (click)="addRemovePassword(true)">Adicionar Senha</button>
+<button (click)="addRemovePassword(false)">Remover Senha</button>
+
+<br />
+
+<button (click)="enableDisableInput(false)">Habilitar Input</button>
+<button (click)="enableDisableInput(true)">Desabilitar Input</button>
+
+<br />
+<hr />
+<br />
+
+<!-- Attribute binding -->
+<button [attr.title]="buttonTitle">Teste Attr Binding</button>
+<button [attr.disabled]="buttonDisabled ? true : null">
+  Disabled Attr Binding
+</button>
+
+<br />
+<hr />
+<br />
+
+<!-- Style binding -->
+<div [style.backgroundColor]="divBackgroundColor">
+  DIV USADA PARA ALTERAR O STYLE BINDING
+</div>
+<input type="color" (change)="changeBgColor($event)" />
+
+<br />
+<hr />
+<br />
+
+<!-- Class binding -->
+<div [class.red-div]="divChangeClass" [class.purple-div]="!divChangeClass">
+  DIV USADA PARA ALTERAR O CLASS BINDING
+</div>
+<button (click)="changeClass()">Alterar classe</button>
