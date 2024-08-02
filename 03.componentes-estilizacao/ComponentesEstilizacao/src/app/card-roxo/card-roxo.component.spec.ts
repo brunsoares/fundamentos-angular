@@ -8,10 +8,9 @@ describe('CardRoxoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CardRoxoComponent]
-    })
-    .compileComponents();
-    
+      declarations: [CardRoxoComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CardRoxoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

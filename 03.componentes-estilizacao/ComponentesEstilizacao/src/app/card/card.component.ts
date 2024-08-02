@@ -11,7 +11,7 @@ import { ICard } from './cards.struct';
 })
 export class CardComponent {
   plan: ICard = {
-    type: "Simples",
-    price: 179.99
-  }
+    type: 'Simples',
+    price: 179.99,
+  };
 }

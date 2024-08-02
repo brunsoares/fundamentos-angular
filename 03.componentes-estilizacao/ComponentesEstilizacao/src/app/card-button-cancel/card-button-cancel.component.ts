@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   // styleUrl: './card-button-cancel.component.css'
   styles: [
     `
-    @import "../../styles.css";
+      @import '../../styles.css';
 
-    .card_cancel_button {
+      .card_cancel_button {
         font-size: 16px;
         text-align: center;
         margin-top: 10px;
@@ -17,10 +17,8 @@ import { Component } from '@angular/core';
         cursor: pointer;
         font-weight: bold;
         padding: 10px;
-    }
-    `
-  ]
+      }
+    `,
+  ],
 })
-export class CardButtonCancelComponent {
-
-}
+export class CardButtonCancelComponent {}

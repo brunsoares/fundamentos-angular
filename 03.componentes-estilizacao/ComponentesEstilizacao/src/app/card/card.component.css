@@ -1,44 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 .card {
-    max-width: 350px;
-    background-color: #fd7557;
-    border-radius: 25px;
-    padding: 30px;
-    font-family: 'Poppins', sans-serif;
+  max-width: 350px;
+  background-color: #fd7557;
+  border-radius: 25px;
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
 }
 
 .card__item {
-    padding: 10px;
+  padding: 10px;
 }
 
 .card__plan {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .card__price {
-    font-weight: 600;
-    font-size: 40px;
+  font-weight: 600;
+  font-size: 40px;
 }
 
 /* Style por componente */
 :host ::ng-deep .card_cancel_button {
-    background-color: purple !important;
+  background-color: purple !important;
 }
 
 /* Style por componente pai e seus filhos */
 ::ng-deep .cancel_button .card_cancel_button {
-    background-color: green !important;
+  background-color: green !important;
 }
 
 .global {
-    background-color: greenyellow;
+  background-color: greenyellow;
 }
 
 .emulated {
-    background-color: red;
+  background-color: red;
 }
 
 div[attr] {
-    background-color: cadetblue;
+  background-color: cadetblue;
 }

@@ -8,10 +8,9 @@ describe('CardButtonCancelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CardButtonCancelComponent]
-    })
-    .compileComponents();
-    
+      declarations: [CardButtonCancelComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CardButtonCancelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

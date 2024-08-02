@@ -7,23 +7,15 @@ import { CardRoxoButtonComponent } from '../card-roxo-button/card-roxo-button.co
 import { CardButtonCancelComponent } from '../card-button-cancel/card-button-cancel.component';
 import { MatSliderModule } from '@angular/material/slider';
 
-
-
 @NgModule({
   declarations: [
-    CardComponent, 
-    CardButtonComponent, 
-    CardRoxoComponent, 
+    CardComponent,
+    CardButtonComponent,
+    CardRoxoComponent,
     CardRoxoButtonComponent,
     CardButtonCancelComponent,
   ],
-  exports: [
-    CardComponent, 
-    CardRoxoComponent,
-  ],
-  imports: [
-    CommonModule,
-    MatSliderModule
-  ]
+  exports: [CardComponent, CardRoxoComponent],
+  imports: [CommonModule, MatSliderModule],
 })
-export class CardsModule { }
+export class CardsModule {}

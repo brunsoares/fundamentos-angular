@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-card-button',
   // templateUrl: './card-button.component.html',
   template: `<div class="card__button">Adquirir</div>`,
-  styleUrl: './card-button.component.css'
+  styleUrl: './card-button.component.css',
 })
-export class CardButtonComponent {
-
-}
+export class CardButtonComponent {}
