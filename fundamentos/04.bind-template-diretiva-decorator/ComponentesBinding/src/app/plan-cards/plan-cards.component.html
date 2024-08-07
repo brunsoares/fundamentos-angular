@@ -1,0 +1,18 @@
+<div class="cards-container">
+  <app-card
+    [planType]="cardPlanType"
+    [planPrice]="cardPlanPrice"
+    (clickButton)="adquiredPlan($event)"
+  ></app-card>
+  <br />
+  <app-card-roxo></app-card-roxo>
+</div>
+
+<br />
+
+<input
+  #inputPlan
+  type="text"
+  (keyup)="changePlan(inputPlan.value)"
+  placeholder="Digite o plano desejado..."
+/>
