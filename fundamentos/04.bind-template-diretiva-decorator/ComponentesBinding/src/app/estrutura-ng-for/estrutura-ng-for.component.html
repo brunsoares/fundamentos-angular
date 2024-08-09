@@ -1,0 +1,27 @@
+<div class="list">
+  <!-- Váriaveis                -->
+  <!-- index (número do indice) -->
+  <!-- odd (indices impares)    -->
+  <!-- even (indices pares)     -->
+  <!-- last (último indice)     -->
+  <!-- first (primeiro indice)  -->
+  <div
+    class="item item__odd"
+    *ngFor="
+      let person of listPeoples;
+      let i = index;
+      let isOdd = odd;
+      let isEven = even;
+      let isLast = last;
+      let isFirst = first
+    "
+    [class.item__odd]="isOdd"
+    [class.item__highlighted]="personSelectedIndex === i"
+    (click)="selectPerson(i)"
+  >
+    <p class="item__name">{{ person.name }}</p>
+    <p class="item__age">{{ person.age }}</p>
+    <p class="item__age" *ngIf="isFirst">Primeiro item</p>
+    <p class="item__age" *ngIf="isLast">Último item</p>
+  </div>
+</div>

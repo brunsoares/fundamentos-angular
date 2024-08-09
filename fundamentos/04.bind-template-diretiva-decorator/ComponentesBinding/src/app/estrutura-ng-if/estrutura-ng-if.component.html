@@ -1,0 +1,12 @@
+<div style="background-color: purple" *ngIf="showDiv; else templateElse">
+  Teste div NG IF
+</div>
+<ng-template #templateElse>
+  <div style="background-color: greenyellow">
+    Teste div NG IF na condição ELSE
+  </div>
+</ng-template>
+<br />
+<button (click)="showDiv = !showDiv">
+  {{ showDiv ? "Desabilitar" : "Habilitar" }}
+</button>

@@ -1,0 +1,14 @@
+<h1
+  [ngStyle]="{
+    'font-size': fontSize + 'px',
+    'color': textColor,
+}"
+>
+  H1 do atributo NG STYLE
+</h1>
+
+<button (click)="increaseFontSize()">+A</button>
+<br />
+<button (click)="decreaseFontSize()">-A</button>
+<br />
+<input type="color" (change)="changeColor($event)" />

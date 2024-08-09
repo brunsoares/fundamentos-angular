@@ -1,0 +1,12 @@
+<h1
+  [ngClass]="{
+    'big green': isGreen,
+    'purple': !isGreen,
+}"
+>
+  H1 do atributo NG CLASS
+</h1>
+
+<button (click)="isGreen = true">Verde</button>
+<br />
+<button (click)="isGreen = false">Roxo</button>
