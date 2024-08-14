@@ -1,0 +1,47 @@
+<!-- Identificador do componente -->
+<!-- Template variable com ngModel -->
+<!-- <input #templateVariable type="text" ngModel /> -->
+<!-- Template variable com evento de click -->
+<input #templateVariable type="text" />
+
+<button (click)="changeDetection()">Alterar</button>
+
+<p>Valor: {{ templateVariable.value }}</p>
+<br />
+<hr />
+<br />
+<!-- Definindo escopos do template variable -->
+<div class="fora-escopo">
+  Valor:
+  <!--{{ inputPai.value }}-->
+  Sem acesso ao componente pai
+</div>
+
+<div class="pai" *ngIf="true">
+  <input #inputPai type="text" ngModel />
+
+  <div class="filho">Valor do pai: {{ inputPai.value }}</div>
+</div>
+<br />
+<hr />
+<br />
+<!-- Template variable com viewChild -->
+<div class="template-view-child">
+  Input: <input #inputTemplateViewCH type="text" />
+  <button (click)="updateInputTextVC()">Atualiza texto pelo viewChild</button>
+  <button (click)="setFocus()">Foco no input</button>
+</div>
+
+<button (click)="updateTextDiv()">Alterar texto abaixo</button>
+<div #divTextAlterar>Conteudo inicial da div!!!</div>
+<br />
+<hr />
+<br />
+<!-- Acessando componente filho com ViewChild -->
+<app-filho #compFilho></app-filho>
+<button (click)="actionFilho()">Interagir com filho</button>
+<br />
+<hr />
+<br />
+<!-- Utilizando configuração static do ViewChild -->
+<div>Input Static: <input #inputStatic type="text" /></div>
