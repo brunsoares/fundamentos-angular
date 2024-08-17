@@ -1,0 +1,37 @@
+.client-infos-card {
+	min-height: 600px;
+
+	&__title {
+		background-color: #32e9db;
+		padding: 10px;
+		display: flex;
+
+		img {
+			width: 40px;
+		}
+
+		h2 {
+			margin: auto 20px;
+		}
+	}
+
+	&__lines {
+		background-color: #ffffff;
+		padding: 10px;
+
+		&__line {
+			display: flex;
+			padding: 15px;
+			border-bottom: 3px solid #ccc;
+			margin: auto 20px;
+
+			h3 {
+				font-weight: lighter;
+			}
+
+			p {
+				margin-left: auto;
+			}
+		}
+	}
+}

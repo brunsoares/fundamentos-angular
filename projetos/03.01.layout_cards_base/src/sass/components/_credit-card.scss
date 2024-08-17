@@ -1,0 +1,68 @@
+.credit-card {
+	min-height: 600px;
+
+	&__title {
+		background-color: #e98132;
+		padding: 10px;
+		display: flex;
+
+		img {
+			width: 40px;
+		}
+
+		h2 {
+			margin: auto 20px;
+		}
+	}
+
+	&__lines {
+		background-color: #ffffff;
+		padding: 10px;
+
+		&__card_detail {
+			margin: auto 20px;
+			padding: 15px;
+
+			h3 {
+				font-weight: 300;
+			}
+
+			&__dados {
+				display: flex;
+				p {
+					margin-left: auto;
+					font-weight: 600;
+				}
+			}
+		}
+
+		&__limit {
+			display: flex;
+			padding: 20px 0;
+			h3 {
+				font-weight: lighter;
+			}
+
+			p {
+				margin-left: auto;
+			}
+		}
+
+		&__line {
+			border-top: 3px solid #ccc;
+			padding: 20px 0;
+
+			h3 {
+				font-weight: lighter;
+			}
+
+			p {
+				margin-left: auto;
+			}
+
+			&__values {
+				display: flex;
+			}
+		}
+	}
+}
