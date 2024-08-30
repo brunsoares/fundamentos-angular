@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: darkgray;
+}
+
+.ca-u-card-text-title {
+  font-weight: 500;
+  font-size: 25px;
+  display: block;
+}
+
+.ca-u-card-text-subtitle {
+  font-weight: 200;
+  font-size: 16px;
+  display: block;
+}
+
+.ca-u-card-text-description {
+  font-weight: 300;
+  font-size: 20px;
+  display: block;
+}
+
+.ca-u-card-avatar-small,
+.ca-u-card-avatar-small img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.ca-u-card-avatar-large,
+.ca-u-card-avatar-large img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
