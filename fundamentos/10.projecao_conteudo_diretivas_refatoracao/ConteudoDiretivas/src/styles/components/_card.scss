@@ -1,0 +1,30 @@
+.ca-u-card {
+  max-width: 400px;
+
+  &__header {
+    padding: 50px;
+    height: 40%;
+    background-color: #ffad36;
+    display: block;
+  }
+
+  &__content {
+    padding: 50px;
+    height: 60%;
+    background-color: #ff5916;
+    display: block;
+  }
+
+  &__small_image {
+    width: 100px;
+  }
+
+  &__large_image {
+    width: 150px;
+  }
+
+  &__description_text {
+    font-size: 20px;
+    font-weight: 300;
+  }
+}
