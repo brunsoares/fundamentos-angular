@@ -1,0 +1,10 @@
+Exemplo 001: Utilizando a diretiva ngIf diretamente no ng-template
+<hr />
+
+<ng-template [ngIf]="condition" [ngIfElse]="templateFalse">
+  NG-TEMPLATE:
+  <app-comp></app-comp>
+</ng-template>
+<ng-template #templateFalse>
+  Componente não iniciado, propriedade está FALSE
+</ng-template>

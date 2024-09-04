@@ -1,0 +1,11 @@
+Exemplo 001: Sem condição, ao iniciar o componente será iniciado automaticamente
+pela diretiva
+<hr />
+
+<!-- Identificador do ng-template usado no ng-container -->
+<ng-container *ngTemplateOutlet="templateEx001"></ng-container>
+
+<ng-template #templateEx001>
+  NG-TEMPLATE:
+  <app-comp></app-comp>
+</ng-template>

@@ -1,0 +1,15 @@
+Exemplo 003: Reduzindo tamanho do código do Ex002 com a operação ternária do
+ngTemplateOutlet
+<hr />
+
+<ng-container
+  *ngTemplateOutlet="condition ? templateTrue : templateFalse"
+></ng-container>
+
+<ng-template #templateTrue>
+  NG-TEMPLATE:
+  <app-comp></app-comp>
+</ng-template>
+<ng-template #templateFalse>
+  Componente não iniciado, propriedade está FALSE
+</ng-template>

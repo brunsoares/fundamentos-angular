@@ -1,0 +1,20 @@
+Exemplo 002: Utilizando uma propriedade para definir qual template será mostrado
+<hr />
+
+<!-- Usando apenas ngIf -->
+<ng-container
+  *ngIf="condition then templateTrue; else templateFalse"
+></ng-container>
+<!-- Usando diretiva ngTemplateOutlet -->
+<ng-container
+  *ngIf="condition; else templateFalse"
+  [ngTemplateOutlet]="templateTrue"
+></ng-container>
+
+<ng-template #templateTrue>
+  NG-TEMPLATE:
+  <app-comp></app-comp>
+</ng-template>
+<ng-template #templateFalse>
+  Componente não iniciado, propriedade está FALSE
+</ng-template>
