@@ -1,0 +1,86 @@
+<h1>Pipes de texto</h1>
+<br />
+<br />
+<b>Pipe UPPERCASE:</b> {{ person.name | uppercase }}
+<br />
+<b>Pipe LOWERCASE:</b> {{ person.name | lowercase }}
+<br />
+<b>Pipe TITLECASE:</b> {{ person.text | titlecase }}
+<br />
+<b>Pipe SLICE:</b> {{ person.text | slice : 0 : 30 }}
+<br />
+<b>Pipe JSON:</b> {{ person | json }}
+<br />
+<b>Pipe JSON + UPPERCASE:</b> {{ person | json | uppercase }}
+<br />
+<hr />
+<h1>Pipes personalizados</h1>
+<br />
+<br />
+<b>Pipe personalizado personStatus:</b> {{ person.status | personStatus }}
+<br />
+<b>Pipe personalizado truncateText:</b> {{ person.text | personText : 50 }}
+<br />
+<hr />
+<h1>Pipes de datas - Display e Fuso Horário</h1>
+<br />
+<br />
+<b>Pipe data ISO8601 basic:</b> {{ dateISO8601 | date }}
+<br />
+<b>Pipe data ISO8601 full:</b> {{ dateISO8601 | date : "full" }}
+<br />
+<b>Pipe data ISO8601 full + timezone:</b
+>{{ dateISO8601 | date : "full" : "+0000" }}
+<br />
+<b>Pipe data TimeStamp full:</b> {{ 1726005000000 | date : "full" }}
+<br />
+<b>Pipe data TimeStamp full + timezone:</b>
+{{ 1726005000000 | date : "full" : "+0000" }}
+<br />
+<b>Pipe data DATE full:</b>
+{{ dateObj | date : "full" }}
+<br />
+<b>Pipe data DATE full + timezone:</b>
+{{ dateObj | date : "full" : "+0000" }}
+<br />
+<br />
+<hr />
+<h1>Pipes de datas - Formatações</h1>
+<br />
+<br />
+<b>Pipe data short:</b> {{ dateObj | date : "short" }}
+<br />
+<b>Pipe data medium:</b> {{ dateObj | date : "medium" }}
+<br />
+<b>Pipe data long:</b> {{ dateObj | date : "long" }}
+<br />
+<b>Pipe data full:</b> {{ dateObj | date : "full" }}
+<br />
+<b>Pipe data custom 01:</b>
+{{ dateObj | date : "'Hoje é' EEEE 'dia' dd 'de' MMMM 'de' yyyy" }}
+<br />
+<b>Pipe data custom 02:</b>
+{{ dateObj | date : "'Hoje é' EEEE 'dia' dd 'de' MMMM 'de' yyyy 'às' HH:mm" }}
+<br />
+<b>Pipe data custom 03:</b>
+{{
+  dateObj | date : "'Hoje é' EEEE 'dia' dd 'de' MMMM 'de' yyyy 'às' HH:mm ZZZZ"
+}}
+<br />
+<b>Pipe data custom 04:</b>
+{{
+  dateObj
+    | date
+      : "'Hoje é' EEEE 'dia' dd 'de' MMMM 'de' yyyy 'às' HH:mm ZZZZ"
+      : "+0000"
+}}
+<br />
+<b>Pipe data custom 05:</b>
+{{ dateObj | date : "'Data:' dd/MM/yyyy 'Hora:' HH:mm a" }}
+<br />
+<br />
+<hr />
+<h1>Pipes de datas - Location</h1>
+<br />
+<br />
+<b>Pipe data full:</b> {{ dateObj | date : "full" : undefined : "pt-BR" }}
