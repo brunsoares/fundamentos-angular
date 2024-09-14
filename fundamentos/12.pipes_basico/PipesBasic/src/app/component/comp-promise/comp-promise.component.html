@@ -1,0 +1,14 @@
+<h3>Promise com async pipe:</h3>
+<div *ngIf="userPromise | async as user; else loading">
+  <b>Nome: {{ user.name }}</b>
+  <br />
+  <b>Username: {{ user.username }}</b>
+  <br />
+  <b>E-mail: {{ user.email }}</b>
+  <br />
+  <b>Telefone: {{ user.phone }}</b>
+</div>
+
+<ng-template #loading>
+  <h1>Carregando...</h1>
+</ng-template>

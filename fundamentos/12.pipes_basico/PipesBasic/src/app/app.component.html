@@ -84,3 +84,68 @@
 <br />
 <br />
 <b>Pipe data full:</b> {{ dateObj | date : "full" : undefined : "pt-BR" }}
+<br />
+<br />
+<hr />
+<h1>Pipes de Decimais</h1>
+<br />
+<br />
+<b>Pipe com 3 casas decimais (Padrão americano):</b>
+{{ 32.425 | number : "2.0-3" : "en-US" }}
+<br />
+<b>Pipe com 2 casas decimais (Padrão americano):</b>
+{{ 32.425 | number : "2.0-2" : "en-US" }}
+<br />
+<b>Pipe com 2 casas decimais + milhar (Padrão americano):</b>
+{{ 2332.425 | number : "2.0-2" : "en-US" }}
+<br />
+<b>Pipe sem quantidade minima (Adiciona 0) (Padrão americano):</b>
+{{ 2332.425 | number : "5.5-7" : "en-US" }}
+<br />
+<b>Pipe padrão brasileiro:</b>
+{{ 2332.425 | number : "2.0-2" : "pt-BR" }}
+<br />
+<br />
+<hr />
+<h1>Pipes de Currency</h1>
+<br />
+<br />
+<b>Pipe padrão americano (Padrão):</b>
+{{ 53320.84789 | currency : "USD" : undefined : undefined : "en-US" }}
+<br />
+<b>Pipe padrão japonês:</b>
+{{ 53320.84789 | currency : "JPY" : undefined : undefined : "ja-JP" }}
+<br />
+<b>Pipe padrão brasileiro:</b>
+{{ 53320.84789 | currency : "BRL" : undefined : undefined : "pt-BR" }}
+<br />
+<b>Pipe padrão brasileiro + display code:</b>
+{{ 53320.84789 | currency : "BRL" : "code" : undefined : "pt-BR" }}
+<br />
+<b>Pipe padrão japonês + display symbol:</b>
+{{ 53320.84789 | currency : "JPY" : "symbol" : undefined : "ja-JP" }}
+<br />
+<b>Pipe padrão japonês + display symbol-narrow:</b>
+{{ 53320.84789 | currency : "JPY" : "symbol-narrow" : undefined : "ja-JP" }}
+<br />
+<b>Pipe padrão brasileiro + display custom:</b>
+{{ 53320.84789 | currency : "BRL" : "UNO" : undefined : "pt-BR" }}
+<br />
+<b>Pipe padrão brasileiro + digitsInfo:</b>
+{{ 53320.84789 | currency : "BRL" : undefined : "2.5-5" : "pt-BR" }}
+<br />
+<br />
+<hr />
+<h1>Pipes de Async com Observable</h1>
+<br />
+<br />
+<app-comp-objeto></app-comp-objeto>
+<br />
+<app-comp-array></app-comp-array>
+<br />
+<br />
+<hr />
+<h1>Pipes de Async com Promises</h1>
+<br />
+<br />
+<app-comp-promise></app-comp-promise>

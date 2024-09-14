@@ -11,6 +11,10 @@ import {
   registerLocaleData,
 } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { CompObjetoComponent } from './component/comp-objeto/comp-objeto.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CompArrayComponent } from './component/comp-array/comp-array.component';
+import { CompPromiseComponent } from './component/comp-promise/comp-promise.component';
 
 const datePipeConfig: DatePipeConfig = {
   dateFormat: 'dd/MM/yyyy',
@@ -18,16 +22,28 @@ const datePipeConfig: DatePipeConfig = {
 };
 
 registerLocaleData(localePt, 'pt-BR');
+registerLocaleData(localePt, 'ja-JP');
 
 @NgModule({
   // Pipes sempre declarados no declarations
-  declarations: [AppComponent, PersonStatusPipe, PersonTextPipe],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    PersonStatusPipe,
+    PersonTextPipe,
+    CompObjetoComponent,
+    CompArrayComponent,
+    CompPromiseComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     // Configuração global para location
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR',
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'ja-JP',
     },
     // Configuração global para format (com injection token)
     {

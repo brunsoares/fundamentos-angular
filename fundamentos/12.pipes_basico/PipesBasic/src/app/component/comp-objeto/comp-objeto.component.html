@@ -1,0 +1,23 @@
+<b>Selecione um valor de 1 a 10: </b>
+<input type="number" min="1" max="10" (change)="changeUser($event)" />
+<br />
+<div id="subscribeManual">
+  <h3>Subscribe manual:</h3>
+  <b>Nome: {{ user.name }}</b>
+  <br />
+  <b>Username: {{ user.username }}</b>
+  <br />
+  <b>E-mail: {{ user.email }}</b>
+  <br />
+  <b>Telefone: {{ user.phone }}</b>
+</div>
+<div id="subscribeAsyncPipe" *ngIf="user$ | async as userPp">
+  <h3>Subscribe async pipe:</h3>
+  <b>Nome: {{ userPp.name }}</b>
+  <br />
+  <b>Username: {{ userPp.username }}</b>
+  <br />
+  <b>E-mail: {{ userPp.email }}</b>
+  <br />
+  <b>Telefone: {{ userPp.phone }}</b>
+</div>

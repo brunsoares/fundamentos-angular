@@ -1,0 +1,13 @@
+<h3>Subscribe async pipe - Todos os registros:</h3>
+<ng-container *ngFor="let user of users$ | async">
+  <br />
+  <b>Nome: {{ user.name }}</b>
+  <br />
+  <b>Username: {{ user.username }}</b>
+  <br />
+  <b>E-mail: {{ user.email }}</b>
+  <br />
+  <b>Telefone: {{ user.phone }}</b>
+  <br />
+  <hr />
+</ng-container>
