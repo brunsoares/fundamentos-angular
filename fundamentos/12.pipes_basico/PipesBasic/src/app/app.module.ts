@@ -15,6 +15,9 @@ import { CompObjetoComponent } from './component/comp-objeto/comp-objeto.compone
 import { HttpClientModule } from '@angular/common/http';
 import { CompArrayComponent } from './component/comp-array/comp-array.component';
 import { CompPromiseComponent } from './component/comp-promise/comp-promise.component';
+import { PipePuroImpuroComponent } from './component/pipe-puro-impuro/pipe-puro-impuro.component';
+import { StatusPipe } from './pipes/status.pipe';
+import { ImgStatusPipe } from './pipes/img-status.pipe';
 
 const datePipeConfig: DatePipeConfig = {
   dateFormat: 'dd/MM/yyyy',
@@ -30,9 +33,12 @@ registerLocaleData(localePt, 'ja-JP');
     AppComponent,
     PersonStatusPipe,
     PersonTextPipe,
+    StatusPipe,
+    ImgStatusPipe,
     CompObjetoComponent,
     CompArrayComponent,
     CompPromiseComponent,
+    PipePuroImpuroComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

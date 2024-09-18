@@ -1,0 +1,13 @@
+<div *ngFor="let user of users; let i = index">
+  <p>Nome: {{ user.name }}</p>
+  <!-- Pipe puro: executado quando valor é alterado -->
+  <p>Status: {{ user.status | status }}</p>
+  <!-- Pipe impuro: executado quando ocorre qualquer mudança no componente -->
+
+  <img [src]="user.status | imgStatus" width="100" height="100" />
+  <br />
+  <button (click)="inactivateUser(i)">Inativar Usuário</button>
+  <hr />
+</div>
+
+<button (click)="addUser()">Adicionar Usuário</button>
