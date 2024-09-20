@@ -1,0 +1,70 @@
+<div class="operations">
+  <div class="operations__filter">
+    <input
+      class="operations__filter-input"
+      type="text"
+      placeholder="Filtrar por Nome"
+      (change)="setFilter($event)"
+    />
+  </div>
+  <div class="operations__table">
+    <table *ngIf="operationPromise | async as operations; else loading">
+      <thead>
+        <tr>
+          <th class="operations__table-cell operations__table-cell--white">
+            Nome
+          </th>
+          <th class="operations__table-cell operations__table-cell--white">
+            Status Cliente
+          </th>
+          <th class="operations__table-cell operations__table-cell--white">
+            Data Operação
+          </th>
+          <th class="operations__table-cell operations__table-cell--white">
+            Hora Operação
+          </th>
+          <th class="operations__table-cell operations__table-cell--white">
+            Valor Operação
+          </th>
+          <th class="operations__table-cell operations__table-cell--white">
+            Risco Operação
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let op of operations | filterUserOperation : filter">
+          <td class="operations__table-cell">{{ op.customerName }}</td>
+          <td class="operations__table-cell">
+            <p class="operations__status">
+              {{ op.customerStatus | statusOperation }}
+              <img
+                [src]="op.customerStatus | iconStatusOperation"
+                class="operations__icon"
+                width="20"
+                height="20"
+              />
+            </p>
+          </td>
+          <td class="operations__table-cell">
+            {{ op.operationDate | date : "dd/MM/yyyy" }}
+          </td>
+          <td class="operations__table-cell">
+            {{ op.operationDate | date : "HH:mm a" }}
+          </td>
+          <td class="operations__table-cell">
+            {{ op.operationValue | currency : "BRL" : "symbol" }}
+          </td>
+          <td class="operations__table-cell">
+            {{ op.operationRisck | percent : "0.0-2" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+    <img src="assets/icons/loading.gif" class="loading__icon" />
+  </div>
+</ng-template>
