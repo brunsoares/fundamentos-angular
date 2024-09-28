@@ -1,0 +1,162 @@
+<h1>NgModel</h1>
+<br />
+<!-- Propriedade NgModel - Input -->
+<input [ngModel]="testeInput" (change)="outputDriven(testeInput)" />
+<br />
+<!-- Propriedade NgModel - Output -->
+<input [ngModel]="testeInput" (ngModelChange)="outputDriven(testeInput)" />
+<br />
+<!-- Propriedade NgModel - Input e Output -->
+<input [(ngModel)]="testeInput" (change)="outputDriven(testeInput)" />
+<br />
+<br />
+<hr />
+<h1>FormControl</h1>
+<br />
+<br />
+Nome:
+<!-- NG CLASS para estilos
+<input
+  ngModel
+  #inputForm="ngModel"
+  required
+  minlength="3"
+  [ngClass]="{
+    valid: inputForm.valid && inputForm.touched,
+    invalid: !inputForm.valid && inputForm.touched
+  }"
+/>
+-->
+<!-- Estilos a partir de classes do ng -->
+<input ngModel #inputForm="ngModel" required minlength="3" />
+<p>Válido: {{ inputForm.valid }}</p>
+<p>Tocado: {{ inputForm.touched }}</p>
+<p>Sujo: {{ inputForm.dirty }}</p>
+<p>Pristine: {{ inputForm.pristine }}</p>
+
+<div *ngIf="inputForm.invalid && inputForm.touched">
+  <div *ngIf="inputForm.hasError('required')">Campo Nome é obrigatório</div>
+  <div *ngIf="inputForm.hasError('minlength')">
+    Campo Nome precisa ter no minimo 3 caracteres
+  </div>
+</div>
+<br />
+<br />
+<hr />
+<h1>NgModel com Textarea</h1>
+<br />
+<br />
+<textarea ngModel #textareaForm="ngModel" required minlength="10"></textarea>
+<p>Válido: {{ textareaForm.valid }}</p>
+<p>Tocado: {{ textareaForm.touched }}</p>
+<p>Sujo: {{ textareaForm.dirty }}</p>
+<p>Pristine: {{ textareaForm.pristine }}</p>
+<br />
+<br />
+<hr />
+<h1>NgModel com select</h1>
+<br />
+<br />
+<label for="cars">Selecione um carro:</label>
+<select id="cars" ngModel #selectForm="ngModel" required>
+  <option value="" selected></option>
+  <option value="Fusca">Fusca</option>
+  <option value="Ferrari">Ferrari</option>
+  <option value="Lamborghini">Lamborghini</option>
+  <option value="Porshe">Porshe</option>
+</select>
+<p>Válido: {{ selectForm.valid }}</p>
+<p>Tocado: {{ selectForm.touched }}</p>
+<p>Sujo: {{ selectForm.dirty }}</p>
+<p>Pristine: {{ selectForm.pristine }}</p>
+<br />
+<br />
+<hr />
+<h1>NgForm</h1>
+<br />
+<br />
+<form #form="ngForm" (ngSubmit)="submit(form)">
+  <input ngModel name="input" required />
+  <br />
+  <input ngModel name="inputNoRequired" />
+  <br />
+  <button type="submit">Enviar valores</button>
+  <button type="reset" (click)="reset(form)">Reset valores</button>
+</form>
+<p>Válido: {{ form.valid }}</p>
+<p>Tocado: {{ form.touched }}</p>
+<p>Sujo: {{ form.dirty }}</p>
+<p>Pristine: {{ form.pristine }}</p>
+<br />
+<br />
+<hr />
+<h1>NgForm com agrupamentos</h1>
+<br />
+<br />
+<form #formAgrp="ngForm" (ngSubmit)="submit(formAgrp)">
+  <ng-container ngModelGroup="dadosUsuario">
+    <h2>Dados do usuário:</h2>
+    <input ngModel name="nome" />
+    <input ngModel name="email" />
+  </ng-container>
+  <ng-container ngModelGroup="dadosProfissao">
+    <h2>Dados da profissão:</h2>
+    <input ngModel name="profissao" />
+    <input ngModel name="salario" />
+  </ng-container>
+  <br />
+  <button type="submit">Enviar valores</button>
+</form>
+<br />
+<br />
+<hr />
+<h1>Form com validator personalizado</h1>
+<br />
+<br />
+<form #formValid="ngForm">
+  <input
+    ngModel
+    name="nome"
+    #nomeControl="ngModel"
+    required
+    placeholder="Seu nome..."
+    appInvalidTextValidator
+  />
+  <div
+    *ngIf="
+      nomeControl &&
+      nomeControl.invalid &&
+      (nomeControl.touched || nomeControl.dirty)
+    "
+  >
+    <p *ngIf="nomeControl.hasError('invalidText')">Texto inválido</p>
+  </div>
+</form>
+<br />
+<br />
+<hr />
+<h1>Form com validator cascata personalizado</h1>
+<br />
+<br />
+<form #formValidCasc="ngForm" appDepartQuantityValidator>
+  <label for="dept">Departamento:</label>
+  <select name="dept" id="dept" ngModel>
+    <option value="RH">Recursos Humanos</option>
+    <option value="TI">Tecnologia</option>
+  </select>
+  <input ngModel name="quant" required ngModel placeholder="Quantidade..." />
+  <div
+    *ngIf="
+      formValidCasc &&
+      formValidCasc.invalid &&
+      (formValidCasc.touched || formValidCasc.dirty)
+    "
+  >
+    <p *ngIf="formValidCasc.hasError('tiQuantInvalid')">
+      Tecnologia aceita no máximo 10 pessoas
+    </p>
+    <p *ngIf="formValidCasc.hasError('rhQuantInvalid')">
+      Recursos humanos aceita no máximo 20 pessoas
+    </p>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+// Classes próprias
+.valid {
+  background-color: greenyellow;
+}
+
+.invalid {
+  background-color: red;
+}
+
+// Classes ng do formulário
+.ng-valid.ng-touched {
+  background-color: greenyellow;
+}
+
+.ng-invalid.ng-touched {
+  background-color: red;
+}
