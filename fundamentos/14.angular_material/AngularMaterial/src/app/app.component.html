@@ -1,0 +1,21 @@
+<form #form="ngForm">
+  <mat-form-field>
+    <mat-label>Nome:</mat-label>
+    <input
+      #nomeControl="ngModel"
+      matInput
+      ngModel
+      required
+      type="text"
+      name="nome"
+    />
+    <mat-hint>Nome é obrigatório</mat-hint>
+    <mat-error>O Nome continua obrigatório, preencha por favor</mat-error>
+    <!-- <mat-error *ngIf="nomeControl.hasError('required')">O Nome continua obrigatório, preencha por favor</mat-error> -->
+  </mat-form-field>
+  <div>
+    <br />
+    <br />
+    <button type="button" [disabled]="form.invalid">Enviar</button>
+  </div>
+</form>
