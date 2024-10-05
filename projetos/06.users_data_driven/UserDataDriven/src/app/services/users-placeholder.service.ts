@@ -9,8 +9,8 @@ import { UsersPlaceholderList } from '../types/users-placeholder-list.response';
 export class UsersPlaceholderService {
   constructor(private readonly _httpClient: HttpClient) {}
 
-  getUsersPlaceholder(): Observable<UsersPlaceholderList> {
-    return this._httpClient.get<UsersPlaceholderList>(
+  getUsersPlaceholder(): Observable<Array<UsersPlaceholderList>> {
+    return this._httpClient.get<Array<UsersPlaceholderList>>(
       'https://jsonplaceholder.typicode.com/users/'
     );
   }
