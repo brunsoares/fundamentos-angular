@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
-    <form class="user-form">
+    <form class="user-form" #formUser="ngForm" appPasswordConfirmationValidator>
       <div class="user-form__row">
         <mat-form-field class="user-form__item user-form__item-100">
           <mat-label>Nome:</mat-label>
@@ -111,6 +111,107 @@
             Digite uma <strong>Senha</strong> mais forte.
           </mat-error>
         </mat-form-field>
+        <mat-form-field class="user-form__item user-form__item-50">
+          <mat-label>Confirmação de Senha:</mat-label>
+          <input
+            type="password"
+            name="confirmPassword"
+            matInput
+            ngModel
+            #passwordConfirmationControl="ngModel"
+            required
+          />
+          <mat-error *ngIf="passwordConfirmationControl.hasError('required')">
+            A <strong>Confirmação de Senha</strong> é obrigatória.
+          </mat-error>
+          <mat-error
+            *ngIf="
+              passwordConfirmationControl.hasError(
+                'invalidPasswordConfirmation'
+              ) && !passwordConfirmationControl.hasError('required')
+            "
+          >
+            As <strong>Senhas</strong> estão incorretas.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="user-form__row">
+        <mat-form-field class="user-form__item user-form__item-50">
+          <mat-label>Data de Nascimento:</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [min]="minDate"
+            [max]="maxDate"
+            name="birthDate"
+            [ngModel]="dateValue"
+            (dateChange)="onDateChange($event)"
+            readonly
+            required
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancelar</button>
+              <button mat-raised-button color="primary" matDatepickerApply>
+                Confirmar
+              </button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-hint>dd/mm/aaaa</mat-hint>
+          <mat-error>
+            A <strong>Data de Nascimento</strong> é obrigatória.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="user-form__item user-form__item-50">
+          <mat-label>Estado:</mat-label>
+          <mat-select name="estado" [(ngModel)]="user.state" required>
+            <mat-option>-</mat-option>
+            <mat-option *ngFor="let state of states" [value]="state.id">
+              {{ state.descricaoContraida }} - {{ state.descricao }}
+            </mat-option>
+          </mat-select>
+          <mat-error> O <strong>Estado</strong> é obrigatório. </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="user-form__row">
+        <div class="user-form__musics">
+          <mat-divider></mat-divider>
+          <div class="user-form__musics-title">
+            <h2>Minhas Músicas:</h2>
+          </div>
+          <table
+            class="user-form__item user-form__item-100"
+            mat-table
+            [dataSource]="user.musics"
+          >
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef>Título</th>
+              <td mat-cell *matCellDef="let music">{{ music.title }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="band">
+              <th mat-header-cell *matHeaderCellDef>Banda</th>
+              <td mat-cell *matCellDef="let music">{{ music.band }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="genre">
+              <th mat-header-cell *matHeaderCellDef>Gênero</th>
+              <td mat-cell *matCellDef="let music">{{ music.genre }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="favorite">
+              <th mat-header-cell *matHeaderCellDef>Favorita</th>
+              <td mat-cell *matCellDef="let music">{{ music.isFavorite }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
       </div>
     </form>
   </mat-card-content>
