@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatDividerModule,
     MatTableModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatCardModule,
@@ -31,6 +35,8 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatDividerModule,
     MatTableModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
   ],
 })
 export class AngularMaterialModule {}

@@ -190,22 +190,82 @@
           >
             <ng-container matColumnDef="title">
               <th mat-header-cell *matHeaderCellDef>Título</th>
-              <td mat-cell *matCellDef="let music">{{ music.title }}</td>
+              <td mat-cell *matCellDef="let music; let i = index">
+                <mat-form-field>
+                  <mat-label>Título:</mat-label>
+                  <input
+                    type="text"
+                    [name]="'title-' + i"
+                    matInput
+                    [(ngModel)]="music.title"
+                    required
+                  />
+                  <mat-error>
+                    O <strong>Título</strong> é obrigatório.
+                  </mat-error>
+                </mat-form-field>
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="band">
               <th mat-header-cell *matHeaderCellDef>Banda</th>
-              <td mat-cell *matCellDef="let music">{{ music.band }}</td>
+              <td mat-cell *matCellDef="let music; let i = index">
+                <mat-form-field>
+                  <mat-label>Banda:</mat-label>
+                  <input
+                    type="text"
+                    [name]="'band-' + i"
+                    matInput
+                    [(ngModel)]="music.band"
+                    required
+                  />
+                  <mat-error>
+                    A <strong>Banda</strong> é obrigatória.
+                  </mat-error>
+                </mat-form-field>
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="genre">
               <th mat-header-cell *matHeaderCellDef>Gênero</th>
-              <td mat-cell *matCellDef="let music">{{ music.genre }}</td>
+              <td mat-cell *matCellDef="let music; let i = index">
+                <mat-form-field>
+                  <mat-label>Gênero:</mat-label>
+                  <input
+                    type="text"
+                    [name]="'genre-' + i"
+                    matInput
+                    [(ngModel)]="music.genre"
+                    (ngModelChange)="filterGenres($event)"
+                    [matAutocomplete]="auto"
+                    required
+                  />
+                  <mat-autocomplete
+                    #auto="matAutocomplete"
+                    [displayWith]="displayFn.bind(this)"
+                  >
+                    <mat-option
+                      *ngFor="let genre of filteredGenresList"
+                      [value]="genre.id"
+                      >{{ genre.description }}</mat-option
+                    >
+                  </mat-autocomplete>
+                  <mat-error>
+                    O <strong>Gênero</strong> é obrigatório.
+                  </mat-error>
+                </mat-form-field>
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="favorite">
               <th mat-header-cell *matHeaderCellDef>Favorita</th>
-              <td mat-cell *matCellDef="let music">{{ music.isFavorite }}</td>
+              <td mat-cell *matCellDef="let music; let i = index">
+                <mat-checkbox
+                  [name]="'favorita-' + i"
+                  [(ngModel)]="music.isFavorite"
+                  [disabled]="isAnyCheckboxChecked() && !music.isFavorite"
+                ></mat-checkbox>
+              </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
