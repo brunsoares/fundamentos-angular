@@ -1,8 +1,11 @@
 import {
   Component,
+  ElementRef,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { IUser } from '../../interfaces/user/user.interface';
@@ -13,6 +16,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { convertPtBrDateToDateObj } from '../../utils/convert-ptbr-date-to-date-obj';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { convertDateObjToPtBrDate } from '../../utils/convert-date-obj-to-ptbr-date';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -25,6 +29,8 @@ export class UserFormComponent implements OnInit, OnChanges {
   @Input({ alias: 'states', required: true }) states: StatesList = [];
   @Input({ alias: 'userSelected', required: true }) user: IUser = {} as IUser;
 
+  @Output('formSubmitEmitt') onFormSubmitEmitt = new EventEmitter<void>();
+
   passwordStrengthValue: number = 0;
   minDate: Date | null = null;
   maxDate: Date | null = null;
@@ -32,6 +38,8 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   displayedColumns: string[] = ['title', 'band', 'genre', 'favorite'];
   filteredGenresList: GenresList = [];
+
+  constructor(private readonly _elementRef: ElementRef) {}
 
   ngOnInit() {
     this.setMinAndMaxDate();
@@ -72,6 +80,27 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   isAnyCheckboxChecked(): boolean {
     return this.user.musics.some((music) => music.isFavorite);
+  }
+
+  onFormSubmit(form: NgForm) {
+    if (form.invalid) {
+      this.focusOnInvalidControl(form);
+    } else {
+      this.onFormSubmitEmitt.emit();
+    }
+  }
+
+  focusOnInvalidControl(form: NgForm) {
+    for (const control of Object.keys(form.controls)) {
+      if (form.controls[control].invalid) {
+        const invalidControl: HTMLElement =
+          this._elementRef.nativeElement.querySelector(`[name=${control}]`);
+
+        invalidControl.focus();
+
+        break;
+      }
+    }
   }
 
   private setMinAndMaxDate() {

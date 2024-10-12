@@ -6,8 +6,10 @@
 </div>
 <div class="container">
   <app-user-form
+    *ngIf="userSelectedIndex !== undefined"
     [genres]="genresList"
     [states]="statesList"
     [userSelected]="userSelected"
+    (formSubmitEmitt)="onFormSubmit()"
   ></app-user-form>
 </div>

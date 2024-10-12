@@ -27,6 +27,10 @@
   &__music-title {
     padding: 20px;
   }
+
+  &__button-container {
+    justify-content: end;
+  }
 }
 
 .weak-password {
