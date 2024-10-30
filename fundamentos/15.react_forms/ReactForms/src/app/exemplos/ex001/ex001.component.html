@@ -1,0 +1,28 @@
+<label for="name">Nome:</label>
+<input type="text" id="name" [formControl]="name" (input)="changeInput()" />
+
+<div style="color: red">
+  <span *ngIf="name.hasError('required')">O Campo nome é obrigatório</span>
+  <span *ngIf="name.hasError('minlength')">
+    É necessário seu preenchimento com no mínimo 3 caracteres
+  </span>
+  <span *ngIf="name.hasError('maxlength')">
+    É necessário seu preenchimento com no máximo 10 caracteres
+  </span>
+</div>
+
+<p>Valor: {{ name.value }}</p>
+
+<button (click)="showStatus()">Mostrar Status</button>
+<br />
+<button (click)="changeValue()">Alterar valor</button>
+<br />
+<button (click)="disableInput()">Desabilitar input</button>
+<br />
+<button (click)="enableInput()">Desabilitar input</button>
+<br />
+<button (click)="resetInput()">Reset input</button>
+<br />
+<button (click)="setValidatorsInput()">Set Validators</button>
+<br />
+<button (click)="addValidatorsInput()">Add Validators</button>
