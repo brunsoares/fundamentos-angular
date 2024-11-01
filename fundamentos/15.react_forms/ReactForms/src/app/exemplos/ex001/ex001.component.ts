@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { invalidTextValidators } from './invalid-text-validators';
 
 @Component({
   selector: 'app-ex001',
@@ -8,8 +9,9 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class Ex001Component implements OnInit {
   name: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
+    // Validators.required,
+    // Validators.minLength(3),
+    invalidTextValidators('invalido'),
   ]);
   // Validador customizado
   // name: FormControl = new FormControl('', {nonNullable: true, validators: Validators.required});

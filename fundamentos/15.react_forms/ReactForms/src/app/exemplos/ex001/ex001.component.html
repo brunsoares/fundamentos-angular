@@ -3,11 +3,14 @@
 
 <div style="color: red">
   <span *ngIf="name.hasError('required')">O Campo nome é obrigatório</span>
-  <span *ngIf="name.hasError('minlength')">
+  <span *ngIf="name.hasError('minlength') && !name.hasError('required')">
     É necessário seu preenchimento com no mínimo 3 caracteres
   </span>
-  <span *ngIf="name.hasError('maxlength')">
+  <span *ngIf="name.hasError('maxlength') && !name.hasError('required')">
     É necessário seu preenchimento com no máximo 10 caracteres
+  </span>
+  <span *ngIf="name.hasError('invalidText') && !name.hasError('required')">
+    {{name.errors?.["invalidText"]}}
   </span>
 </div>
 
