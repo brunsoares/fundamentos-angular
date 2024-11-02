@@ -1,0 +1,31 @@
+<form [formGroup]="userForm" (ngSubmit)="showValue()">
+  <label for="name">Nome:</label>
+  <input type="text" id="name" formControlName="name" />
+  <p *ngIf="name?.hasError('required')">Campo nome é obrigatório</p>
+  <br />
+  <label for="email">Email:</label>
+  <input type="email" id="email" formControlName="email" />
+  <p *ngIf="email?.hasError('required')">Campo e-mail é obrigatório</p>
+  <br />
+  <hr />
+  <div formGroupName="address">
+    <p>Informações de Endereço</p>
+    <label for="street">Rua:</label>
+    <input type="text" id="street" formControlName="street" />
+    <p *ngIf="street?.hasError('required')">Campo rua é obrigatório</p>
+    <br />
+    <label for="number">Número:</label>
+    <input type="text" id="number" formControlName="number" />
+    <p *ngIf="number?.hasError('required')">Campo número é obrigatório</p>
+  </div>
+  <hr />
+
+  <button [disabled]="!userForm.valid">Enviar</button>
+  <br />
+  <button (click)="altFull()">Alteração total</button>
+  <br />
+  <button (click)="altPartial()">Alteração parcial</button>
+
+  <p>Formulário válido: {{ userForm.valid }}</p>
+  <p>Formulário Endereço válido: {{ userForm.get("address")?.valid }}</p>
+</form>

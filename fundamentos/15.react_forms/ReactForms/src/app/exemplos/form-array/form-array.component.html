@@ -1,0 +1,15 @@
+<form [formGroup]="musicsForm">
+  <div formArrayName="musics">
+    <div *ngFor="let music of musics.controls; let i = index">
+      <label [for]="'music_' + i">Música:</label>
+      <input [formControlName]="i" type="text" [id]="'music_' + i" />
+      <button (click)="removeMusic(i)">Remover</button>
+    </div>
+  </div>
+  <br />
+  <p>Form músicas válido: {{ musicsForm.valid }}</p>
+  <p>Form array válido: {{ musics.valid }}</p>
+  <br />
+  <button (click)="addMusic()">Adicionar música</button>
+  <button (click)="save()">Salvar</button>
+</form>
