@@ -1,0 +1,13 @@
+<form [formGroup]="userForm">
+  <input placeholder="Senha" formControlName="password" />
+  <input placeholder="Confirmação de senha" formControlName="confirmPassword" />
+
+  <p *ngIf="userForm.get('confirmPassword')?.hasError('passwordNotMatch')">
+    Senhas não conferem!
+  </p>
+</form>
+
+<button (click)="showForm()">Mostrar form</button>
+
+<p>Pessoa Form válido: {{ userForm.valid }}</p>
+<p>Confirmação senha válido: {{ userForm.get("confirmPassword")?.valid }}</p>

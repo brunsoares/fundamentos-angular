@@ -14,9 +14,10 @@ import { FormGroupComponent } from './exemplos/form-group/form-group.component';
 import { FormArrayComponent } from './exemplos/form-array/form-array.component';
 import { FormArrayGroupComponent } from './exemplos/form-array-group/form-array-group.component';
 import { FormBuilderComponent } from './exemplos/form-builder/form-builder.component';
+import { CrossValidatorComponent } from './exemplos/cross-validator/cross-validator.component';
 
 @NgModule({
-  declarations: [AppComponent, Ex001Component, ValidatorAsyncComponent, FormGroupComponent, FormArrayComponent, FormArrayGroupComponent, FormBuilderComponent],
+  declarations: [AppComponent, Ex001Component, ValidatorAsyncComponent, FormGroupComponent, FormArrayComponent, FormArrayGroupComponent, FormBuilderComponent, CrossValidatorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
