@@ -3,6 +3,8 @@ import { CountriesService } from './services/countries.services';
 import { StatesService } from './services/states.services';
 import { CitiesService } from './services/cities.services';
 import { UsersService } from './services/users.services';
+import { UserListResponse } from './types/user-list-response';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,9 @@ import { UsersService } from './services/users.services';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+  usersList: UserListResponse = [];
+  currentTabIndex: number = 0;
+
   constructor(
     private readonly _countriesService: CountriesService,
     private readonly _statesService: StatesService,
@@ -30,8 +35,9 @@ export class AppComponent implements OnInit {
       console.log(cities);
     });
 
-    this._usersService.getUsers().subscribe((users) => {
-      console.log(users);
-    });
+    this._usersService
+      .getUsers()
+      .pipe(take(1))
+      .subscribe((users) => (this.usersList = users));
   }
 }

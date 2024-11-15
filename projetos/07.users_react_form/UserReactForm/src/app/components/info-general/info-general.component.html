@@ -1,0 +1,33 @@
+<div class="p-4">
+  <div class="p-4 grid lg:grid-cols-3 gap-4">
+    <app-user-info-item label="Nome" [value]="user?.name"></app-user-info-item>
+    <app-user-info-item
+      label="E-mail"
+      [value]="user?.email"
+    ></app-user-info-item>
+  </div>
+  <div class="p-4 grid lg:grid-cols-3 gap-4">
+    <app-user-info-item
+      label="País"
+      [value]="user?.country"
+    ></app-user-info-item>
+    <app-user-info-item
+      label="Estado"
+      [value]="user?.state"
+    ></app-user-info-item>
+  </div>
+  <div class="p-4 grid lg:grid-cols-3 gap-4">
+    <app-user-info-item
+      label="Estado cívil"
+      [value]="user?.maritalStatus | maritalStatusPipe"
+    ></app-user-info-item>
+    <app-user-info-item
+      label="Renda mensal"
+      [value]="user?.monthlyIncome | currency : 'BRL' : 'symbol' : '1.2-2'"
+    ></app-user-info-item>
+    <app-user-info-item
+      label="Data de nascimento"
+      [value]="user?.birthDate"
+    ></app-user-info-item>
+  </div>
+</div>

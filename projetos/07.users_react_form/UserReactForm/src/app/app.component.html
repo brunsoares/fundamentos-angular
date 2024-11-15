@@ -1,0 +1,14 @@
+<div class="p-4 max-w-screen-xl mx-auto">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <app-users-list [users]="usersList"></app-users-list>
+      <mat-tab-group [(selectedIndex)]="currentTabIndex">
+        <mat-tab label="Geral">
+          <app-info-general [user]="usersList[0]"></app-info-general>
+        </mat-tab>
+        <mat-tab label="Contato"> CONTATO </mat-tab>
+        <mat-tab label="Dependentes"> DEPENDENTES </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>
