@@ -23,7 +23,9 @@
     ></app-user-info-item>
     <app-user-info-item
       label="Renda mensal"
-      [value]="user?.monthlyIncome | currency : 'BRL' : 'symbol' : '1.2-2'"
+      [value]="
+        user?.monthlyIncome | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'
+      "
     ></app-user-info-item>
     <app-user-info-item
       label="Data de nascimento"
