@@ -6,3 +6,7 @@ export interface IAddress {
   state: string;
   city: string;
 }
+
+export interface IAddressListDisplay extends IAddress {
+  typeDescription: string;
+}

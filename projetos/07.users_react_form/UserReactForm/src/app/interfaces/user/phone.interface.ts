@@ -4,3 +4,8 @@ export interface IPhone {
   internationalCode: string;
   number: string;
 }
+
+export interface IPhoneToDisplay {
+  type: string;
+  number: string;
+}

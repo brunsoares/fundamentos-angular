@@ -5,6 +5,7 @@ import { CitiesService } from './services/cities.services';
 import { UsersService } from './services/users.services';
 import { UserListResponse } from './types/user-list-response';
 import { take } from 'rxjs';
+import { IUser } from './interfaces/user/user.interface';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ import { take } from 'rxjs';
 export class AppComponent implements OnInit {
   usersList: UserListResponse = [];
   currentTabIndex: number = 0;
+  userSelectedIndex: number | undefined;
+  userSelected: IUser = {} as IUser;
 
   constructor(
     private readonly _countriesService: CountriesService,
@@ -39,5 +42,14 @@ export class AppComponent implements OnInit {
       .getUsers()
       .pipe(take(1))
       .subscribe((users) => (this.usersList = users));
+  }
+
+  onUserSelected(userSelectedIndex: number) {
+    const userFound = this.usersList[userSelectedIndex];
+    if (userFound) {
+      this.userSelectedIndex = userSelectedIndex;
+      this.userSelected = structuredClone(userFound);
+      this.currentTabIndex = 0;
+    }
   }
 }
