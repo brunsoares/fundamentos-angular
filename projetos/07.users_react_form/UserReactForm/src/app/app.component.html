@@ -5,24 +5,17 @@
         [users]="usersList"
         (onUserSelected)="onUserSelected($event)"
       ></app-users-list>
-      <mat-tab-group
-        [(selectedIndex)]="currentTabIndex"
+      <app-buttons-container
         *ngIf="userSelectedIndex != undefined"
-      >
-        <mat-tab label="Geral">
-          <app-info-general [user]="userSelected"></app-info-general>
-        </mat-tab>
-        <mat-tab label="Contato">
-          <app-contact-information
-            [user]="userSelected"
-          ></app-contact-information>
-        </mat-tab>
-        <mat-tab label="Dependentes">
-          <app-dependent-list
-            [dependents]="userSelected?.dependentsList"
-          ></app-dependent-list>
-        </mat-tab>
-      </mat-tab-group>
+        [isEditMode]="isEditMode"
+        (onEditBtn)="onEditBtn()"
+        (onCancelBtn)="onCancelBtn()"
+      ></app-buttons-container>
+      <app-user-info-container
+        *ngIf="userSelectedIndex != undefined"
+        [user]="userSelected"
+        [isEditMode]="isEditMode"
+      ></app-user-info-container>
     </mat-card-content>
   </mat-card>
 </div>

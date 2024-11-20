@@ -14,9 +14,9 @@ import { IUser } from './interfaces/user/user.interface';
 })
 export class AppComponent implements OnInit {
   usersList: UserListResponse = [];
-  currentTabIndex: number = 0;
   userSelectedIndex: number | undefined;
   userSelected: IUser = {} as IUser;
+  isEditMode: boolean = false;
 
   constructor(
     private readonly _countriesService: CountriesService,
@@ -49,7 +49,14 @@ export class AppComponent implements OnInit {
     if (userFound) {
       this.userSelectedIndex = userSelectedIndex;
       this.userSelected = structuredClone(userFound);
-      this.currentTabIndex = 0;
     }
+  }
+
+  onEditBtn() {
+    this.isEditMode = true;
+  }
+
+  onCancelBtn() {
+    this.isEditMode = false;
   }
 }

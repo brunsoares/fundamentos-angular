@@ -1,0 +1,67 @@
+<form class="p-4 grid gap-4" [formGroup]="userForm">
+  <ng-container formGroupName="generalInformation">
+    <div class="grid lg:grid-cols-3 gap-4">
+      <mat-form-field class="w-full">
+        <mat-label>Nome:</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>E-mail:</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-4">
+      <mat-form-field class="w-full">
+        <mat-label>País:</mat-label>
+        <input
+          type="text"
+          matInput
+          [matAutocomplete]="autoCountry"
+          formControlName="country"
+        />
+        <mat-autocomplete #autoCountry="matAutocomplete">
+          <mat-option *ngFor="let opt of []">{{ "option" }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Estado:</mat-label>
+        <input
+          type="text"
+          matInput
+          [matAutocomplete]="autoState"
+          formControlName="state"
+        />
+        <mat-autocomplete #autoState="matAutocomplete">
+          <mat-option *ngFor="let opt of []">{{ "option" }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-4">
+      <div class="w-full">
+        <div class="text-lg">Estado cívil:</div>
+        <mat-radio-group
+          class="w-full flex flex-col sm:flex-row sm:justify-between"
+          formControlName="maritalStatus"
+        >
+          <mat-radio-button [value]="1">Solteiro</mat-radio-button>
+          <mat-radio-button [value]="2">Casado</mat-radio-button>
+          <mat-radio-button [value]="3">Divorciado</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <mat-form-field class="w-full">
+        <mat-label>Renda mensal:</mat-label>
+        <input matInput formControlName="monthlyIncome" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Data de nascimento:</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+        <mat-hint>DD/MM/AAAA</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </ng-container>
+</form>

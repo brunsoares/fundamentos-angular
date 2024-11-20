@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { HttpClientModule } from '@angular/common/http';
 
-import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt-BR');
 
