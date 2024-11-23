@@ -17,6 +17,7 @@ import { InfoGeneralComponent } from './info-general/info-general.component';
 import { UserInfoContainerComponent } from './user-info-container/user-info-container.component';
 import { UserInfoItemComponent } from './user-info-item/user-info-item.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     PipesModule,
     CommonModule,
     ReactiveFormsModule,
+    NgxMaskDirective,
   ],
   exports: [
     UsersListComponent,
@@ -49,5 +51,6 @@ import { UsersListComponent } from './users-list/users-list.component';
     ButtonsContainerComponent,
     UserInfoContainerComponent,
   ],
+  providers: [provideNgxMask()],
 })
 export class ComponentsModule {}

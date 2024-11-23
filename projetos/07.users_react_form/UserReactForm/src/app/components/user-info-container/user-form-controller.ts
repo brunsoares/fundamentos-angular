@@ -1,13 +1,16 @@
 import { inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../interfaces/user/user.interface';
-import { PhoneUserList } from '../../types/phone-user-list';
 import { AddressUserList } from '../../types/address-user-list';
 import { DependentUserList } from '../../types/dependent-user-list';
+import { PhoneUserList } from '../../types/phone-user-list';
+import { convertPtBrDateToDateObj } from '../../utils/convert-pt-br-date-to-date-obj';
 
 export class UserFormController {
   userForm!: FormGroup;
 
+  private readonly emailPattern =
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   private readonly _formBuilder = inject(FormBuilder);
 
   constructor() {
@@ -39,7 +42,11 @@ export class UserFormController {
   }
 
   private fulfillGeneralInformation(user: IUser) {
-    this.generalInformation?.patchValue(user);
+    const newUser = {
+      ...user,
+      birthDate: convertPtBrDateToDateObj(user.birthDate),
+    };
+    this.generalInformation?.patchValue(newUser);
   }
 
   private fulfilPhoneList(phoneList: PhoneUserList) {
@@ -97,7 +104,10 @@ export class UserFormController {
     this.userForm = this._formBuilder.group({
       generalInformation: this._formBuilder.group({
         name: ['', Validators.required],
-        email: ['', Validators.required],
+        email: [
+          '',
+          [Validators.required, Validators.pattern(this.emailPattern)],
+        ],
         country: ['', Validators.required],
         state: ['', Validators.required],
         maritalStatus: [null, Validators.required],
