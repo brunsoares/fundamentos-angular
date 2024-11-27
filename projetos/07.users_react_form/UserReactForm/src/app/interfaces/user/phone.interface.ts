@@ -6,6 +6,7 @@ export interface IPhone {
 }
 
 export interface IPhoneToDisplay {
-  type: string;
+  type: number;
+  description: string;
   number: string;
 }

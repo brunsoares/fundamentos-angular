@@ -5,6 +5,9 @@ import { AddressUserList } from '../../types/address-user-list';
 import { DependentUserList } from '../../types/dependent-user-list';
 import { PhoneUserList } from '../../types/phone-user-list';
 import { convertPtBrDateToDateObj } from '../../utils/convert-pt-br-date-to-date-obj';
+import { preparePhoneList } from '../../utils/prepare-phone-list';
+import { PhoneTypeEnum } from '../../enums/phone-type.enum';
+import { prepareAddressList } from '../../utils/prepare-address-list';
 
 export class UserFormController {
   userForm!: FormGroup;
@@ -36,9 +39,9 @@ export class UserFormController {
   fulfillForm(user: IUser) {
     this.clearForm();
     this.fulfillGeneralInformation(user);
-    this.fulfilPhoneList(user.phoneList);
-    this.fulfilAddressList(user.addressList);
-    this.fulfilDependentsList(user.dependentsList);
+    this.fulfillPhoneList(user.phoneList);
+    this.fulfillAddressList(user.addressList);
+    this.fulfillDependentsList(user.dependentsList);
   }
 
   private fulfillGeneralInformation(user: IUser) {
@@ -49,35 +52,38 @@ export class UserFormController {
     this.generalInformation?.patchValue(newUser);
   }
 
-  private fulfilPhoneList(phoneList: PhoneUserList) {
-    phoneList.forEach((phone) => {
+  private fulfillPhoneList(phoneList: PhoneUserList) {
+    preparePhoneList(phoneList, false, (phone) => {
+      const phoneValidator =
+        phone.type === PhoneTypeEnum.EMERGENCY ? [] : [Validators.required];
+
       this.phoneList.push(
         this._formBuilder.group({
-          type: [phone.type, Validators.required],
-          areaCode: [phone.areaCode, Validators.required],
-          internationalCode: [phone.internationalCode, Validators.required],
-          number: [phone.number, Validators.required],
+          type: [phone.type],
+          description: [phone.description],
+          number: [phone.number, phoneValidator],
         })
       );
     });
   }
 
-  private fulfilAddressList(addressList: AddressUserList) {
-    addressList.forEach((address) => {
+  private fulfillAddressList(addressList: AddressUserList) {
+    prepareAddressList(addressList, false, (address) => {
       this.addressList.push(
         this._formBuilder.group({
-          type: [address.type, Validators.required],
-          street: [address.street, Validators.required],
-          complement: [address.complement, Validators.required],
-          country: [address.country, Validators.required],
-          state: [address.state, Validators.required],
-          city: [address.city, Validators.required],
+          type: [address.type],
+          typeDescription: [{ value: address.typeDescription, disabled: true }],
+          street: [address.street],
+          complement: [address.complement],
+          country: [address.country],
+          state: [address.state],
+          city: [address.city],
         })
       );
     });
   }
 
-  private fulfilDependentsList(dependentsList: DependentUserList) {
+  private fulfillDependentsList(dependentsList: DependentUserList) {
     dependentsList.forEach((dependent) => {
       this.dependentsList.push(
         this._formBuilder.group({
