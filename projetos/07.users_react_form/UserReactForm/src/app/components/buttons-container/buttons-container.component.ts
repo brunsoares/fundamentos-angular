@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonsContainerComponent {
   @Input({ required: true }) isEditMode: boolean = false;
+  @Input({ required: true }) isFormValid: boolean = false;
   @Output('onEditBtn') onEditBtnEmitter = new EventEmitter<void>();
   @Output('onCancelBtn') onCancelBtnEmitter = new EventEmitter<void>();
 

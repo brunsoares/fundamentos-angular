@@ -1,80 +1,48 @@
-<div class="p-4">
+<form class="p-4" [formGroup]="userForm">
   <p class="text-xl font-semibold">Dependentes:</p>
   <button
     class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white, bg-green-600 hover:bg-green-500"
+    (click)="addDependent()"
   >
     Novo Dependente
   </button>
+  <ng-container formArrayName="dependentsList">
+    <ng-container
+      *ngFor="let control of dependentsList.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Nome:</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error>O Nome é obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Idade:</mat-label>
+          <input matInput formControlName="age" />
+          <mat-error>A Idade é obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Documento:</mat-label>
+          <input matInput formControlName="document" mask="000.000.000-00" />
+          <mat-error *ngIf="control.get('document')?.hasError('required')">
+            O Documento é obrigatório
+          </mat-error>
+          <mat-error *ngIf="control.get('document')?.hasError('mask')">
+            O Documento é inválido
+          </mat-error>
+        </mat-form-field>
+        <div class="flex justify-center items-baseline box-border p-2">
+          <button
+            class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white, bg-red-600 hover:bg-red-500"
+            (click)="removeDependent(i)"
+          >
+            Remover
+          </button>
+        </div>
+      </div>
 
-  <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>Nome:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Idade:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Documento:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <div class="flex justify-center items-baseline box-border p-2">
-      <button
-        class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white, bg-red-600 hover:bg-red-500"
-      >
-        Remover
-      </button>
-    </div>
-  </div>
-
-  <hr class="block sm:hidden" />
-
-  <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>Nome:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Idade:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Documento:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <div class="flex justify-center items-baseline box-border p-2">
-      <button
-        class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white, bg-red-600 hover:bg-red-500"
-      >
-        Remover
-      </button>
-    </div>
-  </div>
-
-  <hr class="block sm:hidden" />
-
-  <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>Nome:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Idade:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Documento:</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <div class="flex justify-center items-baseline box-border p-2">
-      <button
-        class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white, bg-red-600 hover:bg-red-500"
-      >
-        Remover
-      </button>
-    </div>
-  </div>
-
-  <hr class="block sm:hidden" />
-</div>
+      <hr class="block sm:hidden" />
+    </ng-container>
+  </ng-container>
+</form>

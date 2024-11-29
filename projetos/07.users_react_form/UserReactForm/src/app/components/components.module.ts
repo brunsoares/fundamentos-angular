@@ -18,6 +18,7 @@ import { UserInfoContainerComponent } from './user-info-container/user-info-cont
 import { UserInfoItemComponent } from './user-info-item/user-info-item.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     PhoneListEditComponent,
     AddressListEditComponent,
     DependentListEditComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     AngularMaterialModule,
@@ -50,6 +52,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     DependentListComponent,
     ButtonsContainerComponent,
     UserInfoContainerComponent,
+    ConfirmationDialogComponent,
   ],
   providers: [provideNgxMask()],
 })

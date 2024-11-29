@@ -2,12 +2,14 @@
   <mat-card appearance="outlined">
     <mat-card-content>
       <app-users-list
+        [isEditMode]="isEditMode"
         [users]="usersList"
         (onUserSelected)="onUserSelected($event)"
       ></app-users-list>
       <app-buttons-container
         *ngIf="userSelectedIndex != undefined"
         [isEditMode]="isEditMode"
+        [isFormValid]="isFormValid"
         (onEditBtn)="onEditBtn()"
         (onCancelBtn)="onCancelBtn()"
       ></app-buttons-container>
@@ -15,6 +17,8 @@
         *ngIf="userSelectedIndex != undefined"
         [user]="userSelected"
         [isEditMode]="isEditMode"
+        (onFormStatusChanges)="onFormStatusChanges($event)"
+        (onFormFirstChanges)="onFormFirstChanges()"
       ></app-user-info-container>
     </mat-card-content>
   </mat-card>

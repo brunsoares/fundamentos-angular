@@ -4,7 +4,10 @@
     appearance="outlined"
     class="user-card-hover"
     (click)="selectUser(i)"
-    [ngClass]="{ 'user-selected': i === userSelectedIndex }"
+    [ngClass]="{
+      'user-selected': i === userSelectedIndex,
+      'user-card-disabled': isEditMode && i !== userSelectedIndex
+    }"
   >
     <mat-card-header>
       <mat-card-title>{{ user.name }}</mat-card-title>

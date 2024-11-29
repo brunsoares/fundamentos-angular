@@ -1,15 +1,17 @@
 import {
   Component,
+  EventEmitter,
   inject,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { IUser } from '../../interfaces/user/user.interface';
 import { UserFormController } from './user-form-controller';
 import { CountriesService } from '../../services/countries.services';
-import { take } from 'rxjs';
+import { distinctUntilChanged, take } from 'rxjs';
 import { CountryList } from '../../types/country-list';
 import { StatesService } from '../../services/states.services';
 import { StateList } from '../../types/state-list';
@@ -25,15 +27,20 @@ export class UserInfoContainerComponent
 {
   countryList: CountryList = [];
   stateList: StateList = [];
+  currentTabIndex: number = 0;
+
   private readonly _countryService = inject(CountriesService);
   private readonly _stateService = inject(StatesService);
 
   @Input({ required: true, alias: 'user' }) userSelected: IUser = {} as IUser;
   @Input({ required: true }) isEditMode: boolean = false;
-
-  currentTabIndex: number = 0;
+  @Output('onFormStatusChanges')
+  onFormStatusChangesEmitter: EventEmitter<boolean> = new EventEmitter();
+  @Output('onFormFirstChanges')
+  onFormFirstChangesEmitter: EventEmitter<void> = new EventEmitter();
 
   ngOnInit() {
+    this.onUserFormStatusChanges();
     this.getCountryList();
   }
 
@@ -44,12 +51,35 @@ export class UserInfoContainerComponent
       Object.keys(changes['userSelected'].currentValue).length > 0;
     if (USER_CHANGED) {
       this.fulfillForm(this.userSelected);
+      this.onUserFormFirstChanges();
       this.getStateList(this.userSelected.country);
     }
   }
 
   onCountrySelected(country: string) {
     this.getStateList(country);
+  }
+
+  onRemoveDependent(dependentIndex: number) {
+    this.removeDependent(dependentIndex);
+  }
+
+  onAddDependent() {
+    this.addDependent();
+  }
+
+  private onUserFormStatusChanges() {
+    this.userForm.statusChanges
+      .pipe(distinctUntilChanged())
+      .subscribe(() =>
+        this.onFormStatusChangesEmitter.emit(this.userForm.valid)
+      );
+  }
+
+  private onUserFormFirstChanges() {
+    this.userForm.valueChanges
+      .pipe(take(1))
+      .subscribe(() => this.onFormFirstChangesEmitter.emit());
   }
 
   private getCountryList() {

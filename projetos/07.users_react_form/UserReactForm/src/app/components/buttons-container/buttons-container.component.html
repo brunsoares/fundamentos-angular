@@ -15,7 +15,12 @@
   </button>
   <button
     *ngIf="isEditMode"
-    class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white, bg-green-600 hover:bg-green-500"
+    [disabled]="!isFormValid"
+    class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white,"
+    [ngClass]="{
+      'bg-green-200 cursor-not-allowed': !isFormValid,
+      'bg-green-600 hover:bg-green-500 cursor-pointer': isFormValid
+    }"
   >
     Salvar
   </button>

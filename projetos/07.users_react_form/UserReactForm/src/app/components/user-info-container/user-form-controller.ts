@@ -8,6 +8,7 @@ import { convertPtBrDateToDateObj } from '../../utils/convert-pt-br-date-to-date
 import { preparePhoneList } from '../../utils/prepare-phone-list';
 import { PhoneTypeEnum } from '../../enums/phone-type.enum';
 import { prepareAddressList } from '../../utils/prepare-address-list';
+import { requiredAddressValidator } from '../../utils/required-address-validator';
 
 export class UserFormController {
   userForm!: FormGroup;
@@ -24,6 +25,10 @@ export class UserFormController {
     return this.userForm.get('generalInformation') as FormGroup;
   }
 
+  get contactInformation(): FormGroup {
+    return this.userForm.get('contactInformation') as FormGroup;
+  }
+
   get phoneList(): FormArray {
     return this.userForm.get('contactInformation.phoneList') as FormArray;
   }
@@ -34,14 +39,6 @@ export class UserFormController {
 
   get dependentsList(): FormArray {
     return this.userForm.get('dependentsList') as FormArray;
-  }
-
-  fulfillForm(user: IUser) {
-    this.clearForm();
-    this.fulfillGeneralInformation(user);
-    this.fulfillPhoneList(user.phoneList);
-    this.fulfillAddressList(user.addressList);
-    this.fulfillDependentsList(user.dependentsList);
   }
 
   private fulfillGeneralInformation(user: IUser) {
@@ -70,15 +67,20 @@ export class UserFormController {
   private fulfillAddressList(addressList: AddressUserList) {
     prepareAddressList(addressList, false, (address) => {
       this.addressList.push(
-        this._formBuilder.group({
-          type: [address.type],
-          typeDescription: [{ value: address.typeDescription, disabled: true }],
-          street: [address.street],
-          complement: [address.complement],
-          country: [address.country],
-          state: [address.state],
-          city: [address.city],
-        })
+        this._formBuilder.group(
+          {
+            type: [address.type],
+            typeDescription: [
+              { value: address.typeDescription, disabled: true },
+            ],
+            street: [address.street],
+            complement: [address.complement],
+            country: [address.country],
+            state: [address.state],
+            city: [address.city],
+          },
+          { validators: requiredAddressValidator }
+        )
       );
     });
   }
@@ -106,6 +108,15 @@ export class UserFormController {
     this.dependentsList.clear();
   }
 
+  fulfillForm(user: IUser) {
+    this.clearForm();
+    this.fulfillGeneralInformation(user);
+    this.fulfillPhoneList(user.phoneList);
+    this.fulfillAddressList(user.addressList);
+    this.fulfillDependentsList(user.dependentsList);
+    this.userForm.markAllAsTouched();
+  }
+
   createForm() {
     this.userForm = this._formBuilder.group({
       generalInformation: this._formBuilder.group({
@@ -126,5 +137,21 @@ export class UserFormController {
       }),
       dependentsList: this._formBuilder.array([]),
     });
+  }
+
+  removeDependent(index: number) {
+    this.dependentsList.removeAt(index);
+    this.userForm.markAsDirty();
+  }
+
+  addDependent() {
+    this.dependentsList.push(
+      this._formBuilder.group({
+        name: ['', Validators.required],
+        age: ['', Validators.required],
+        document: ['', Validators.required],
+      })
+    );
+    this.userForm.markAsDirty();
   }
 }

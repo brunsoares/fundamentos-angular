@@ -6,10 +6,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 import {
   MAT_DATE_LOCALE,
   provideNativeDateAdapter,
 } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -20,6 +28,12 @@ import {
     MatAutocompleteModule,
     MatRadioModule,
     MatDatepickerModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
   ],
   exports: [
     MatCardModule,
@@ -29,6 +43,12 @@ import {
     MatAutocompleteModule,
     MatRadioModule,
     MatDatepickerModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
   ],
   providers: [
     provideNativeDateAdapter(),
