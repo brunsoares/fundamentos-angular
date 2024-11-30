@@ -10,10 +10,10 @@ import {
 } from '@angular/core';
 import { IUser } from '../../interfaces/user/user.interface';
 import { UserFormController } from './user-form-controller';
-import { CountriesService } from '../../services/countries.services';
-import { distinctUntilChanged, take } from 'rxjs';
+import { CountriesService } from '../../services/countries.service';
+import { distinctUntilChanged, Subscription, take } from 'rxjs';
 import { CountryList } from '../../types/country-list';
-import { StatesService } from '../../services/states.services';
+import { StatesService } from '../../services/states.service';
 import { StateList } from '../../types/state-list';
 
 @Component({
@@ -28,6 +28,7 @@ export class UserInfoContainerComponent
   countryList: CountryList = [];
   stateList: StateList = [];
   currentTabIndex: number = 0;
+  userFormValueChangesSubs!: Subscription;
 
   private readonly _countryService = inject(CountriesService);
   private readonly _stateService = inject(StatesService);
@@ -50,6 +51,9 @@ export class UserInfoContainerComponent
       changes['userSelected'] &&
       Object.keys(changes['userSelected'].currentValue).length > 0;
     if (USER_CHANGED) {
+      if (this.userFormValueChangesSubs) {
+        this.userFormValueChangesSubs.unsubscribe();
+      }
       this.fulfillForm(this.userSelected);
       this.onUserFormFirstChanges();
       this.getStateList(this.userSelected.country);
@@ -77,7 +81,7 @@ export class UserInfoContainerComponent
   }
 
   private onUserFormFirstChanges() {
-    this.userForm.valueChanges
+    this.userFormValueChangesSubs = this.userForm.valueChanges
       .pipe(take(1))
       .subscribe(() => this.onFormFirstChangesEmitter.emit());
   }

@@ -9,6 +9,7 @@ import { preparePhoneList } from '../../utils/prepare-phone-list';
 import { PhoneTypeEnum } from '../../enums/phone-type.enum';
 import { prepareAddressList } from '../../utils/prepare-address-list';
 import { requiredAddressValidator } from '../../utils/required-address-validator';
+import { UserFormValueService } from '../../services/user-form-value.service';
 
 export class UserFormController {
   userForm!: FormGroup;
@@ -16,9 +17,11 @@ export class UserFormController {
   private readonly emailPattern =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   private readonly _formBuilder = inject(FormBuilder);
+  private readonly _userFormValueService = inject(UserFormValueService);
 
   constructor() {
     this.createForm();
+    this.watchUserFormValueChanges();
   }
 
   get generalInformation(): FormGroup {
@@ -90,8 +93,8 @@ export class UserFormController {
       this.dependentsList.push(
         this._formBuilder.group({
           name: [dependent.name, Validators.required],
-          age: [dependent.age, Validators.required],
-          document: [dependent.document, Validators.required],
+          age: [dependent.age.toString(), Validators.required],
+          document: [dependent.document.toString(), Validators.required],
         })
       );
     });
@@ -106,6 +109,13 @@ export class UserFormController {
     this.addressList.clear();
     this.dependentsList.reset();
     this.dependentsList.clear();
+  }
+
+  private watchUserFormValueChanges() {
+    this.userForm.valueChanges.subscribe(
+      () =>
+        (this._userFormValueService.userFormValue = this.userForm.getRawValue())
+    );
   }
 
   fulfillForm(user: IUser) {

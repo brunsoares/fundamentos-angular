@@ -10,6 +10,7 @@ export class ButtonsContainerComponent {
   @Input({ required: true }) isFormValid: boolean = false;
   @Output('onEditBtn') onEditBtnEmitter = new EventEmitter<void>();
   @Output('onCancelBtn') onCancelBtnEmitter = new EventEmitter<void>();
+  @Output('onSaveBtn') onSaveBtnEmitter = new EventEmitter<void>();
 
   onEdit() {
     this.onEditBtnEmitter.emit();
@@ -17,5 +18,9 @@ export class ButtonsContainerComponent {
 
   onCancel() {
     this.onCancelBtnEmitter.emit();
+  }
+
+  onSave() {
+    this.onSaveBtnEmitter.emit();
   }
 }
