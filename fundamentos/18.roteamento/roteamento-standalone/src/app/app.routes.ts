@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { Comp01Component } from './components/comp-01/comp-01.component';
-import { Comp02Component } from './components/comp-02/comp-02.component';
 
 export const routes: Routes = [
   {

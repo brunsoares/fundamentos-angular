@@ -1,0 +1,51 @@
+<div class="menu">
+  <div class="menu__item" routerLink="/">
+    <a
+      class="menu__link"
+      routerLinkActive="menu__link--selected"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="onEnableDisabledRoutes(false)"
+    >
+      Inicio
+    </a>
+  </div>
+  <div class="menu__item" [routerLink]="disabledRoutes ? null : '/information'">
+    <a
+      class="menu__link"
+      routerLinkActive="menu__link--selected"
+      [ngClass]="{ 'menu__link--disabled': disabledRoutes }"
+    >
+      Informações
+    </a>
+  </div>
+  <div class="menu__item" [routerLink]="disabledRoutes ? null : '/contact'">
+    <a
+      class="menu__link"
+      routerLinkActive="menu__link--selected"
+      [ngClass]="{ 'menu__link--disabled': disabledRoutes }"
+    >
+      Contatos
+    </a>
+  </div>
+  <div class="menu__item" [routerLink]="disabledRoutes ? null : '/about'">
+    <a
+      class="menu__link"
+      routerLinkActive="menu__link--selected"
+      [ngClass]="{ 'menu__link--disabled': disabledRoutes }"
+    >
+      Sobre
+    </a>
+  </div>
+  <div class="menu__item" routerLink="/logout">
+    <a
+      class="menu__link"
+      routerLinkActive="menu__link--selected"
+      (click)="onEnableDisabledRoutes(true)"
+    >
+      Sair
+    </a>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+<div *ngIf="onShowText()">Nenhuma rota está ativa</div>
