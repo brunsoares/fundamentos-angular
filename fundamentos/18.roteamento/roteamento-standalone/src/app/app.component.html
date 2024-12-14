@@ -1,9 +1,23 @@
 <div class="menu">
   <div class="menu__item">
-    <a class="menu__link" routerLink="/first">Primeiro</a>
+    <a
+      class="menu__link"
+      routerLink="/first"
+      routerLinkActive
+      #rlaFirst="routerLinkActive"
+    >
+      Primeiro {{ rlaFirst.isActive ? "ativo" : "inativo" }}
+    </a>
   </div>
   <div class="menu__item">
-    <a class="menu__link" routerLink="/second">Segundo</a>
+    <a
+      class="menu__link"
+      routerLink="/second"
+      routerLinkActive
+      #rlaSecond="routerLinkActive"
+    >
+      Segundo {{ rlaSecond.isActive ? "ativo" : "inativo" }}
+    </a>
   </div>
 </div>
 <router-outlet></router-outlet>
