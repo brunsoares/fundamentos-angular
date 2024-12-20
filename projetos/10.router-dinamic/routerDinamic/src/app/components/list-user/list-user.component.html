@@ -1,0 +1,9 @@
+<router-outlet></router-outlet>
+<h2>Lista de usuários:</h2>
+@for (user of usersList$ | async; track user) {
+<div style="cursor: pointer" [routerLink]="['user-selected', user.id]">
+  <p>Código: {{ user.id }}</p>
+  <p>Nome: {{ user.name }}</p>
+</div>
+<hr />
+}

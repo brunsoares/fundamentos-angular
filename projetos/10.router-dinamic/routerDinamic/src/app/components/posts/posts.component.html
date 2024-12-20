@@ -1,0 +1,9 @@
+<router-outlet></router-outlet>
+<h2>Posts:</h2>
+@for (post of postsList$ | async; track post) {
+<div style="cursor: pointer" [routerLink]="['post-selected', post.id]">
+  <p>Título: {{ post.title }}</p>
+  <p>Conteúdo: {{ post.body }}</p>
+</div>
+<hr />
+}

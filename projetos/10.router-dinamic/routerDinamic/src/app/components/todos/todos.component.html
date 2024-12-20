@@ -1,0 +1,8 @@
+<h2>ToDos:</h2>
+@for (todo of todosList$ | async; track todo) {
+<div>
+  <p>Título: {{ todo.title }}</p>
+  <p>Finalizado: {{ todo.completed | completedTodo }}</p>
+</div>
+<hr />
+}

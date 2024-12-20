@@ -1,0 +1,26 @@
+<div #header>
+  <p>Código: {{ userSelected.id }}</p>
+  <p>Nome: {{ userSelected.name }}</p>
+</div>
+
+<div
+  #menu
+  style="display: flex; justify-content: space-between; text-align: center"
+>
+  <div style="width: 25%">
+    <a routerLink="/users">Usuários</a>
+  </div>
+  <div style="width: 25%">
+    <a routerLink="todos" routerLinkActive="item-selected">ToDos</a>
+  </div>
+  <div style="width: 25%">
+    <a routerLink="albums" routerLinkActive="item-selected">Albums</a>
+  </div>
+  <div style="width: 25%">
+    <a routerLink="posts" routerLinkActive="item-selected">Posts</a>
+  </div>
+</div>
+
+<div #renderItens>
+  <router-outlet></router-outlet>
+</div>
