@@ -16,37 +16,35 @@ export const routes: Routes = [
   {
     path: 'users',
     component: ListUserComponent,
+  },
+  {
+    path: 'user-selected/:id',
+    component: UserSelectedComponent,
     children: [
       {
-        path: 'user-selected/:id',
-        component: UserSelectedComponent,
+        path: '',
+        redirectTo: 'todos',
+        pathMatch: 'full',
+      },
+      {
+        path: 'todos',
+        component: TodosComponent,
+      },
+      {
+        path: 'albums',
+        component: AlbumsComponent,
+      },
+      {
+        path: 'posts',
+        component: PostsComponent,
         children: [
           {
-            path: '',
-            redirectTo: 'todos',
-            pathMatch: 'full',
-          },
-          {
-            path: 'todos',
-            component: TodosComponent,
-          },
-          {
-            path: 'albums',
-            component: AlbumsComponent,
-          },
-          {
-            path: 'posts',
-            component: PostsComponent,
+            path: 'post-selected/:idPost',
+            component: PostSelectedComponent,
             children: [
               {
-                path: 'post-selected/:idPost',
-                component: PostSelectedComponent,
-                children: [
-                  {
-                    path: 'comments',
-                    component: CommentsComponent,
-                  },
-                ],
+                path: 'comments',
+                component: CommentsComponent,
               },
             ],
           },
