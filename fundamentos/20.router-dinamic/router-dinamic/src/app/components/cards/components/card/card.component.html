@@ -1,0 +1,10 @@
+<h2>Cartão:</h2>
+
+@if (userCard$ | async; as cardSelected) {
+<p>ID: {{ cardSelected.id }}</p>
+<p>Número: {{ cardSelected.numero }}</p>
+<p>Tipo: {{ cardSelected.tipo }}</p>
+<p>Titular: {{ cardSelected.titular }}</p>
+<p>Validade: {{ cardSelected.validade }}</p>
+<p>CVV: {{ cardSelected.cvv }}</p>
+}

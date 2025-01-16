@@ -1,0 +1,8 @@
+<h2>Cartões de Débito:</h2>
+@for (card of userCardList$ | async; track card) {
+<div style="cursor: pointer" (click)="redirectTo(card.id)">
+  <p>ID: {{ card.id }}</p>
+  <p>Número: {{ card.numero }}</p>
+  <hr />
+</div>
+}
