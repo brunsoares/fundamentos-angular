@@ -1,0 +1,32 @@
+<div class="general">
+  @if (generalInfo$ | async; as info) {
+  <div class="general__row">
+    <div class="general__card">
+      <p class="poppins-regular">Incidentes no Dia:</p>
+      <p class="poppins-semibold">
+        {{ info["generalInfo"].incidents.incidents }}
+      </p>
+    </div>
+    <div class="general__card">
+      <p class="poppins-regular">Pagamentos Pendentes:</p>
+      <p class="poppins-semibold">
+        {{ info["generalInfo"].pendentPayments.pendentPayments }}
+      </p>
+    </div>
+  </div>
+  <div class="general__row">
+    <div class="general__card">
+      <p class="poppins-regular">Contas Criadas:</p>
+      <p class="poppins-semibold">
+        + {{ info["generalInfo"].accountsCreate.accountsCreate }}/dia
+      </p>
+    </div>
+    <div class="general__card">
+      <p class="poppins-regular">Usuários Ativos:</p>
+      <p class="poppins-semibold">
+        {{ info["generalInfo"].activeUsers.activeUsers }}
+      </p>
+    </div>
+  </div>
+  }
+</div>
