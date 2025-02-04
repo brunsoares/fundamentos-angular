@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ObservableSimpleComponent } from './components/observable-simple/observable-simple.component';
 import { SubjectComponent } from './components/subject/subject.component';
+import { PromissesComponent } from './components/promisses/promisses.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { SubjectComponent } from './components/subject/subject.component';
     RouterOutlet,
     ObservableSimpleComponent,
     SubjectComponent,
+    PromissesComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
