@@ -8,11 +8,12 @@ const authenticateToken = (req, res, next) => {
 		return res.status(401).json({ message: 'Token não fornecido' });
 	}
 
-	const validToken = validateToken(token);
-	if (!validToken) {
+	const tokenDecoded = validateToken(token);
+	if (!tokenDecoded) {
 		return res.status(403).json({ message: 'Token inválido' });
 	}
 
+	req.username = tokenDecoded.username;
 	next();
 };
 

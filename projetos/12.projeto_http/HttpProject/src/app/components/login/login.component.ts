@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -24,11 +25,14 @@ export class LoginComponent {
       .login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe({
         next: (response) => {
-          localStorage.setItem('token', response.token);
           this._router.navigate(['user-infos']);
         },
-        error: (error) => {
-          console.error(error);
+        error: (error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            this.loginForm.setErrors({ invalidCredentials: true });
+          } else {
+            this.loginForm.setErrors({ generalCredentialsError: true });
+          }
         },
       });
   }

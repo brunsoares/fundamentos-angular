@@ -7,10 +7,9 @@ const generateToken = (username) => {
 
 const validateToken = (token) => {
 	try {
-		jwt.verify(token, SECRET_KEY);
-		return true;
+		return jwt.verify(token, SECRET_KEY);
 	} catch (error) {
-		return false;
+		return undefined;
 	}
 };
 
