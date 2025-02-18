@@ -27,6 +27,40 @@ app.post('/login', (req, res) => {
 	return res.status(200).json({ token });
 });
 
+app.put('/update-user', authenticateToken, (req, res) => {
+	if (!req.body.name)
+		return res.status(400).json({ message: 'O nome é obrigatório' });
+
+	if (!req.body.email)
+		return res.status(400).json({ message: 'O email é obrigatório' });
+
+	if (!req.body.username)
+		return res.status(400).json({ message: 'O username é obrigatório' });
+
+	if (!req.body.password)
+		return res.status(400).json({ message: 'A senha é obrigatória' });
+
+	const userIndex = USERS_LIST_BD.findIndex(
+		(user) => user.username === req.username
+	);
+
+	if (userIndex !== -1) {
+		USERS_LIST_BD[userIndex] = {
+			...USERS_LIST_BD[userIndex],
+			name: req.body.name,
+			email: req.body.email,
+			username: req.body.username,
+			password: req.body.password,
+		};
+		return res.status(200).json({
+			message: 'Usuário atualizado com sucesso',
+			token: generateToken(req.body.username),
+		});
+	} else {
+		return res.status(403).json({ message: 'Usuário não encontrado' });
+	}
+});
+
 app.post('/validate-token', authenticateToken, (req, res) => {
 	res.status(200).json({ message: 'Token válido' });
 });

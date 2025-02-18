@@ -114,6 +114,20 @@
     }
   }
 
+  &__alert-message {
+    p {
+      font-size: 12px;
+    }
+
+    &--success {
+      color: #6f9265;
+    }
+
+    &--error {
+      color: #e05757;
+    }
+  }
+
   &__buttons-container {
     display: flex;
     justify-content: space-between;
