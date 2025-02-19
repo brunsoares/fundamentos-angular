@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserService } from '../../services/update-user.service';
 import { IUser } from '../../interface/user.interface';
+import { CreateUserService } from '../../services/create-user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-infos',
@@ -19,21 +21,36 @@ export class UserInfosComponent {
   });
 
   private readonly _updateUserService = inject(UpdateUserService);
+  private readonly _createUserService = inject(CreateUserService);
 
   updateUserInfos() {
-    const body: IUser = {
-      name: this.userInfosForm.get('name')!.value!,
-      email: this.userInfosForm.get('email')!.value!,
-      username: this.userInfosForm.get('username')!.value!,
-      password: this.userInfosForm.get('password')!.value!,
-    };
-    this._updateUserService.updateUser(body).subscribe({
-      next: (res) => {
-        this.userInfosForm.setErrors({ 'update-success': true });
-      },
-      error: (err) => {
-        this.userInfosForm.setErrors({ 'update-error': true });
-      },
-    });
+    this._updateUserService
+      .updateUser(this.userInfosForm.value as IUser)
+      .subscribe({
+        next: (res) => {
+          this.userInfosForm.setErrors({ 'update-success': true });
+        },
+        error: (err) => {
+          this.userInfosForm.setErrors({ 'update-error': true });
+        },
+      });
+  }
+
+  createUserInfos() {
+    this._createUserService
+      .createUser(this.userInfosForm.value as IUser)
+      .subscribe({
+        next: (res) => {
+          this.userInfosForm.setErrors({ 'create-success': true });
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.status === 409) {
+            return this.userInfosForm.setErrors({
+              'exists-error': true,
+            });
+          }
+          return this.userInfosForm.setErrors({ 'create-error': true });
+        },
+      });
   }
 }

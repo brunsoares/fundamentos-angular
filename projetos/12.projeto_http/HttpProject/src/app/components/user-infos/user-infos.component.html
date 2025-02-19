@@ -80,6 +80,18 @@
         <p class="user-infos__alert-message--error">
           Ocorreu um erro inesperado, tente novamente mais tarde
         </p>
+        } @if(userInfosForm.hasError('create-success')) {
+        <p class="user-infos__alert-message--success">
+          Usuário criado com sucesso!
+        </p>
+        } @if(userInfosForm.hasError('create-error')) {
+        <p class="user-infos__alert-message--error">
+          Ocorreu um erro inesperado, tente novamente mais tarde
+        </p>
+        } @if(userInfosForm.hasError('exists-error')) {
+        <p class="user-infos__alert-message--error">
+          Usuário já existe, tente outro nome de usuário
+        </p>
         } }
       </div>
 
@@ -87,6 +99,7 @@
         <button
           type="button"
           class="poppins-regular user-infos__send-button user-infos__send-button--create"
+          (click)="createUserInfos()"
         >
           Criar Usuário
         </button>
